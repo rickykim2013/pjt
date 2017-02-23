@@ -1,0 +1,259 @@
+<!doctype html>
+<html>
+    <head>
+      <meta charset="utf-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+      <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0" />
+      <title>KSDC@DFW</title>
+
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mobile-angular-ui/1.3.4/css/mobile-angular-ui-base.min.css" />
+
+
+  
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+ 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mobile-angular-ui/1.3.4/js/mobile-angular-ui.min.js?v=1"></script>
+    <!-- Required to use $touch, $swipe, $drag and $translate services -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mobile-angular-ui/1.3.4/js/mobile-angular-ui.gestures.min.js"></script>
+
+
+
+      <!--style id='example-css'></style-->
+      <script>
+  
+      </script>
+    </head>
+    <body ng-app="myApp" ng-controller="myCtrl">
+      <div class="scrollable">
+        <div class="scrollable-content">
+          <div class='section' id='example-html'>
+          <p>
+<h3 class="page-header">KSDC@DFW 
+<img width="60px" src="../img/group.ico"></h3>
+
+
+</p>
+
+
+<ui-state id='activeTab' default='1'></ui-state>
+
+<ul class="nav nav-tabs">
+  <li ui-class="{'active': activeTab == 1}">
+    <a ui-set="{'activeTab': 1}">About </a>
+  </li>
+
+  <li ui-class="{'active': activeTab == 3}">
+    <a ui-set="{'activeTab': 3}">Member </a>
+  </li>
+  <li ui-class="{'active': activeTab == 4}">
+    <a ui-set="{'activeTab': 4}">Resource</a>
+  </li>
+
+  </ul>
+
+
+
+
+
+<div ui-if="activeTab == 1">
+<br><h4>Korean Software Developer Community @DFW</h4>
+<p>
+<br>DFW 지역 한인 소프트웨어 개발자들이  
+<br>함께 모여 서로의 고민과 정보를 나누는 모임.
+</p>
+<hr>
+
+
+<ul><h4>DFW 한인 소프트웨어 개발자 모임 </h4>
+<li>일정: 7pm, 3/15/2017(Wed)</li>
+
+
+<li>장소: Fluo Labs (Valley Veiw Lane & 35)<a href='http://maps.google.com/?q=13250 Branch View Lane Dallas, Texas 75234' target='_new'>
+<img width="40" src="http://mceo.info/mceo/biz/maps_64dp.png"></a><br>13250 Branch View Lane Dallas, Texas 75234
+
+</li>
+<br>
+<li>
+세부일정:
+<br>- 7:00pm - 7:30pm: Welcome Dinner
+<br>- 7:30pm - 8:00pm: 7분 자기소개 (기술및 관심 분야)
+<br>- 8:00pm - 8:50pm: 소프트웨어 개발환경 변화
+<br>- 8:50pm - 9:00pm: Closing Session <br>
+</li>
+
+</ul>
+
+</div>
+
+
+
+<div ui-if="activeTab == 2">
+<br>
+
+
+<!--ul><h4>Monthly Lunch Break</h4>
+<li> 12PM, 2nd Wednesday of Month</li>
+<li>Food Court at StateFarm, Richardson
+<a href='http://maps.google.com/?q=1251 State Street, Richardson, TX 75082' target='_new'>
+<img width="40" src="http://mceo.info/mceo/biz/maps_64dp.png"></a>
+
+
+</li>
+</ul-->
+
+<hr>
+<ul><h4>2017 KSDN Conference</h4>
+<li>Date: TBD(6:30pm, 2nd Wednesday of March)</li>
+<li>Where: Fluo Labs, Dallas
+<a href='http://maps.google.com/?q=13250 Branch View Lane Dallas, Texas 75234' target='_new'>
+<img width="40" src="http://mceo.info/mceo/biz/maps_64dp.png"></a>
+</li>
+</ul>
+
+</div>
+
+<div ui-if="activeTab == 3">
+<br>
+주위에 알고 계시는 분들이 있으면 
+<br>저에게 이메일 보내주시면 추가 하도록하겠습니다.
+<br>이메일 <a href=mailTo:blueschool25@gmail.com > click here to email</a>
+<br>
+<br>
+<li ng-repeat="x in _users">
+<img width="20px" src="http://www.mceo.info/cbmc/img/c_0.png" >
+<span ng-if="x.c_role1== 'L' " class="ng-scope">*</span><!-- end ngIf: x.c_role1== 'L' -->
+<span class="menu-desc ng-binding">{{x.name}}-{{x.title}}  </span>
+</li>
+
+
+
+
+<!--
+
+
+<td width="8%">
+<span ng-if="x.c_phone != '' " class="ng-scope"><a href="" class="btn btn-default" ng-click="goToCall(x,1)"> <i class="fa fa-phone">Call</i></a></span>
+</td>
+<td width="8%">
+
+<a href="" class="btn btn-default"> <i class="fa fa-pencil" style="color:#0f0;"> {{x.c_email}}</i>
+</a></td>
+
+-->
+
+
+
+
+</div>
+
+
+
+
+<div ui-if="activeTab == 4">
+<br> 좋은 정보가 있는 링크가 있으면 서로 공유하면 좋을 듯합니다.
+<br>저에게 이메일 보내주시면 추가 하도록하겠습니다.
+<br>이메일 <a href=mailTo:blueschool25@gmail.com > click here to email</a>
+<br>
+<br>
+<ul><h4>Web Front-end Development</h4>
+<li ng-repeat="x in _links | filter: { type: 'WF' } ">
+
+
+<span class="menu-desc ng-binding">
+
+<a href="{{x.url}}" target='_new'>
+{{x.title}}</a>  - {{x.desc}}
+</span>
+</li>
+</ul>
+
+<br>
+<ul><h4>Coding School</h4>
+<li ng-repeat="x in _links | filter: { type: 'CODE' } ">
+
+
+<span class="menu-desc ng-binding">
+
+<a href="{{x.url}}" target='_new'>
+{{x.title}}</a>  - {{x.desc}}
+</span>
+</li>
+</ul>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          </div>
+        </div>
+      </div>
+    </body>
+<script>
+var app = angular.module('myApp', ['mobile-angular-ui']);
+app.controller('myCtrl', function($scope) {
+$scope.test = "dddd";
+$scope._users = [
+        {   "name": "채민호","title": "SW Developer(R,Computational)","c_phone":"1111111", "c_email":"dfdf@dfd.com"  },
+                {   "name": "최호원","title": "SW Developer(ANDROID)" ,"c_phone":"1111111", "c_email":"dfdf@dfd.com" },
+                {   "name": "김영일","title": "SW Developer(J2EE)" ,"c_phone":"214-531-0553", "c_email":"blueschool25@gmail.com" },
+        {   "name": "송현술","title": "SW Developer(J2EE)" ,"c_phone":"1111111", "c_email":"dfdf@dfd.com" },
+        {   "name": "정남호","title": "SW Developer(.NET)" ,"c_phone":"1111111", "c_email":"dfdf@dfd.com" },
+        {   "name": "김영태","title": "SW Developer(.NET)" ,"c_phone":"1111111", "c_email":"dfdf@dfd.com" },
+         {   "name": "김기범","title": "SW Developer(.NET)" ,"c_phone":"214-664-6222", "c_email":"kibum.kim@hotmail.com" },
+        {   "name": "신정협","title": "SW Developer(.NET,AZURE)","c_phone":"1111111", "c_email":"dfdf@dfd.com"  }
+
+
+    ];
+
+$scope._links = [
+        {  "type":"WF", "title":"Cousera Web Dev","url": "https://www.coursera.org/learn/html-css-javascript-for-web-developers", "desc":"Cousera HTML, CSS, and Javascript for Web Developers" },
+        {   "type":"WF", "title":"W3School","url": "http://www.w3schools.com/", "desc":"THE WORLD'S LARGEST WEB DEVELOPER SITE" },
+        {   "type":"WF", "title":"AngularJS ","url": "https://angularjs.org/", "desc":"AngularJS (version 1.x)" },
+        
+        {   "type":"WF", "title":"React JS","url": " https://facebook.github.io/react/", "desc":"React JS Framework" },
+       
+
+        {   "type":"WF", "title":"Ionic","url": "https://ionicframework.com/", "desc":"Ionic framework" },
+        {   "type":"WF", "title":"Ext JS","url": "https://www.sencha.com/", "desc":"Ext JS Framework" },
+
+{   "type":"CODE","title":"kodable","url": " https://www.kodable.com" , "desc":"kodable" },
+{   "type":"CODE","title":"Code.org","url": "https://www.Code.org", "desc":"Code.org" },
+{   "type":"CODE","title":"Kahn.org","url": "https://www.Kahn.org/", "desc":"Kahn.org" },
+
+
+{   "type":"CODE","title":"e3em","url": "http://e3em.com/ko/project/computer-institution/", "desc":"EMPOWER" },
+
+
+{   "type":"CODE","title":"Coding Dojo","url": "http://www.codingdojo.com/", "desc":"Coding Dojo" }
+
+
+
+
+
+
+    ];    
+
+});
+</script>     
+</html>
