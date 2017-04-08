@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>E01 - angular</title>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+
+
+<div ng-app="myApp" ng-controller="customersCtrl">
+
+
+<table>
+<tr><th>Action</th>
+<th>name</th>
+<th>phone</th>
+<th>email</th>
+ </tr>
+
+ <tr ng-repeat="x in names">
+    <td><button type="button"> Detail</button></td>
+    <td>{{ x.first_name }} {{ x.last_name }}</td>
+
+     <td>{{ x.phone }}</td>
+     <td>{{ x.email }}</td>       
+  </tr>
+</table>
+
+</div>
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('customersCtrl', function($scope, $http) {
+    $http.get("list_db.php")
+    .then(function (response) {$scope.names = response.data;});
+});
+</script>
