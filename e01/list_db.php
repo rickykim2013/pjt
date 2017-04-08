@@ -1,40 +1,25 @@
-
 <?php
-header("Access-Control-Allow-Origin: *");
-header("Content-Type: application/json; charset=UTF-8");
-
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "db_pjt";
+$dbname = "edu";
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-} 
 
-$sql = "SELECT * FROM tb_user";
-$result = $conn->query($sql);
+header("Access-Control-Allow-Origin: *");
+header("Content-Type: application/json; charset=UTF-8");
 
-$outp = "[";
-if ($result->num_rows > 0) {
-    // output data of each row
-    while($row = $result->fetch_assoc()) {
-	    if ($outp != "[") {$outp .= ",";}
-	    $outp .= '{"first_name":"'  . $row["first_name"] . '",';
-	    $outp .= '"last_name":"'   . $row["last_name"]        . '",';
-	    //$outp .= '"personIntro":"'   . $row["skill"]        . '",';
-	    $outp .= '"phone":"'   . $row["phone"]        . '",';
-	    $outp .= '"email":"'. $row["email"]     . '"}'; 
-    }
-} else {
+$conn = new mysqli("localhost", "root", "", "edu");
 
+$result = $conn->query("SELECT  * FROM guest");
+
+$outp = "";
+while($rs = $result->fetch_array(MYSQLI_ASSOC)) {
+    if ($outp != "") {$outp .= ",";}
+    $outp .= '{"email":"'  . $rs["email"] . '",';
+    $outp .= '"phone":"'   . $rs["phone"]        . '",';
+    $outp .= '"last_name":"'. $rs["last_name"]     . '"}';
 }
-
-$outp .="]";
-
+$outp ='{"records":['.$outp.']}';
 $conn->close();
 
 echo($outp);
