@@ -18,7 +18,7 @@
 <th>email</th>
  </tr>
 
- <tr ng-repeat="x in names">
+ <tr ng-repeat="x in guest_list">
     <td><button type="button"> Detail</button></td>
     <td>{{ x.first_name }} {{ x.last_name }}</td>
 
@@ -33,6 +33,9 @@
 var app = angular.module('myApp', []);
 app.controller('customersCtrl', function($scope, $http) {
     $http.get("list_db.php")
-    .then(function (response) {$scope.names = response.data;});
+    .then(function (response) {
+    	$scope.guest_list = response.data.records;
+
+    });
 });
 </script>
