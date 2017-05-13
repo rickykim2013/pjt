@@ -1,0 +1,16 @@
+
+CREATE TABLE db_pjt.tb_user (
+  system_id int(11) NOT NULL AUTO_INCREMENT,
+  user_id varchar(25) DEFAULT NULL,
+  email varchar(80) DEFAULT NULL,
+  first_name varchar(25) DEFAULT NULL,
+  last_name varchar(25) DEFAULT NULL,
+  phone varchar(80) DEFAULT NULL,
+  address1 varchar(80) DEFAULT NULL,
+  address2 varchar(80) DEFAULT NULL,
+  city varchar(30) DEFAULT NULL,
+  zip varchar(20) DEFAULT NULL,
+  info text,
+  skills text,
+  PRIMARY KEY (system_id)
+) 
