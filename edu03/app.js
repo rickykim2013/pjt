@@ -1,75 +1,132 @@
-//This global array will store all the persons data as array.
-var personList =[];
 
-init();
+var personList = [];
+
+$(function(){
+	init();
+});
+
+
+
+
+
 //call initial data
 function init(){
+
 	$.ajax({
 		type: "GET",
-		url: "list_db.php",
+		url: "action_list.php",
 		success: function(result){
+			console.log(result);
 	        personList = result;
-	        displayTable();
+	        displayTable()
+
 		},
 		dataType: "json"
 	});	
 
 }
 
-//This function will be called at the first time 
 function displayTable(){
-	var retStr = '<table>';
-	retStr += '<tr>';
-	retStr += '<th>name</th>';
-	retStr += '<th>email</th>';
-	retStr += '</tr>';
-		
-	for (i =0 ; i < personList.length;i++){
-		var personRecord =  personList[i];
-		retStr += '<tr>';
-		retStr += '<td>' + personRecord["first_name"] + " " + personRecord["last_name"] +'</td>';
-		retStr += '<td>' + personRecord["email"] +'</td>';
-		retStr += '</tr>';
-		
+
+
+
+	var retStr = "";
+	retStr += "<table class='table table-hover'> ";
+	retStr += "<tr><th>select</th><th>first name</th><th>last name</th><th>delete</th></tr>"
+
+
+	for (var i=0; i< personList.length; i++){
+		var tempPerson = personList[i];
+
+		retStr += "<tr>";
+
+		retStr += "<td><button class='btn btn-primary' onclick=selectRecord(" + i + ") > Select</button></td>";
+		retStr += "<td>" + tempPerson["first_name"] + "</td>";
+		retStr += "<td>" + tempPerson["last_name"] + "</td>";
+		retStr += "<td><button class='btn btn-primary' onclick=deleteRecord(" + i + ") > Del</button></td>";
+		retStr += "</tr>";
 	}
-	retStr += '</table>';
-	document.getElementById("grid").innerHTML = retStr;
+
+	retStr += "</table>";
+	$("#user").html(retStr);
+
+
 }
 
 
-
-function saveData(){
-	
-	var personRecord =  personList[num];
-
-
-	var paramStr = $('#my-form').serializeArray();
-	var bar = '1111';
-	var calibri = 'tttt';
-	var dataObj = {
-	    first_name: $("#first_name").val(),
-	    last_name: $("#last_name").val(),
-	    email: $("#email").val()
-	};
-
+function ajaxCall(dataObj){
 	$.ajax({
 		type: "POST",
-		url: "add.php",
+		url: "action_aud.php",
 		data: dataObj,
 		success: function(result){},
 		dataType: "json"
 	});
 	init();
-	closeDetail();
+}
+function addData(){
+	
+	var dataObj = {
+		action_type: 'ADD',
+	    first_name: $("#first_name").val(),
+	    last_name: $("#last_name").val() , 
+	    system_id: 0
+	};
+	ajaxCall(dataObj)
+
+
 
 }
 
+function saveData(){
+	
+	var dataObj = {
+		
+	    first_name: $("#first_name").val(),
+	    last_name: $("#last_name").val() , 
+	    system_id: $("#system_id").val(),
+	    action_type: $("#action_type").val()
+	};
 
-function openDetail(){
+	ajaxCall(dataObj)
+
+}
+
+function deleteRecord(index){
+	var record = personList[index];
+	var dataObj = {
+		action_type: 'DEL',
+	    first_name: '',
+	    last_name: '',
+	    system_id: record.system_id 
+	};
+	ajaxCall(dataObj)
+
+}
+
+function openNewDetail(){
+	$("#first_name").val(  "Test" );
+	$("#last_name").val(  "Lee" );
+	$("#system_id").val(  0 );
+	$("#action_type").val("ADD");
 	$("#person_detail").show(); //show
 
 }
+
 function closeDetail(){
 	$("#person_detail").hide(); //show
+}
+
+function selectRecord(index){
+	var record = personList[index];
+	console.log(record);
+
+	$("#first_name").val(  record.first_name );
+	$("#last_name").val(  record.last_name );
+	$("#system_id").val(  record.system_id );
+	$("#action_type").val("MOD");
+	
+	$("#person_detail").show(); //show
 
 }
+

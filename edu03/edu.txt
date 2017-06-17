@@ -4,11 +4,8 @@ Front-end Program
 - app.js
 
 Back-end Program
-- list.php
-- add.php
-
-- update.php
-- delete.php
+- action_list.php
+- action_aud.php (add,update,delete)
 
 Databse
 - table.txt

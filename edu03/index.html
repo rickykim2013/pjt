@@ -1,11 +1,14 @@
-<!DOCTYPE html>
-<html>
+	<html>
 <head>
+<!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-<link rel="stylesheet" type="text/css" href="style.css">
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="style.css">
 <script src="app.js"></script>
 
 
@@ -13,36 +16,32 @@
 </head>
 
 <body>
-<table>
-<button id="btn_add" type="button"onclick="openDetail()"> Click me to add</button>	
+
+<button class='btn btn-primary' onclick="javascript:openNewDetail();">
+click to add
+</button>
 
 
-<tr>
-	<td><div id="grid"  ></div></td>
-	<td>
-		<div id="person_detail" style="display: none;">
 		<form id="person_form" >
+			<div id="person_detail" style="display: none;">
 			<h1>Detail</h1>
 			<table>
 			<tr><td>First name</td><td><input type="text" id="first_name"></td></tr>
 			<tr><td>Last name</td><td><input type="text" id="last_name"></td></tr>
-			<tr><td>E-mail</td><td><input type="text" id="email"></td></tr>
-
+			<tr><td>system id</td><td><input type="text" id="system_id"></td></tr>
+			<tr><td>system id</td><td><input type="text" id="action_type"></td></tr>
 			
 			<tr><td colspan=2>
 			<input type="hidden"  id="num">
-			<button type="button"onclick="saveData()"> Save</button>
-			<button type="button"onclick="closeDetail()"> Close</button>
+			<button class='btn btn-primary' onclick="saveData()"> Update</button>
+			<button class='btn btn-primary' onclick="closeDetail()"> Close</button>
 			</td></tr>
 			</table>
-	
-		</div>
-	</td>
-</tr>
-</table>
+			</div>
+		</form>	
 
 
-
+<div id="user"  ></div>
 
 </body>
 </html>
